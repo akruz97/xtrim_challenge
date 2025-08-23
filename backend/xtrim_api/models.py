@@ -12,6 +12,9 @@ class Plan(models.Model):
 
     def __str__(self):
         return self.name
+            
+    class Meta:
+        db_table = "plans"   # 👈 nombre exacto de la tabla en la BD
 
 # Create your models here.
 class Client(models.Model):
@@ -24,10 +27,16 @@ class Client(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        db_table = "clients"   # 👈 nombre exacto de la tabla en la BD
+
 class PlanClient(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     start_date = models.DateField()
+
+    class Meta:
+        db_table = "plan_client"   # 👈 nombre exacto de la tabla en la BD
 
 
 class Consumption(models.Model):
@@ -36,8 +45,14 @@ class Consumption(models.Model):
     mb_used = models.IntegerField(default=0)
     minutes_used = models.IntegerField(default=0)
 
+    class Meta:
+        db_table = "consumptions"   # 👈 nombre exacto de la tabla en la BD
+
 class ConsumptionType(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = "consumption_types"   # 👈 nombre exacto de la tabla en la BD
