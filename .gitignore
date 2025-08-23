@@ -1,0 +1,13 @@
+
+# Variables de entorno
+.env
+.env.*
+backend/.env
+backend/.env.*
+
+# Entornos virtuales
+venv/
+.env/
+.venv/
+ENV/
+env/

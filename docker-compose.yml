@@ -1,0 +1,67 @@
+
+
+services:
+
+  # Base de datos
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: telco
+      MYSQL_DATABASE: telco_db
+      MYSQL_USER: telco
+      MYSQL_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - xtrim-net
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    #restart: always
+    ports:
+      - "8082:80"  # phpMyAdmin se accederá en localhost:8082
+    environment:
+      PMA_HOST: mysql-db  # Nombre del contenedor MySQL
+      PMA_USER: telco
+      PMA_PASSWORD: 12345
+    depends_on:
+      - mysql-db
+    networks:
+      - xtrim-net
+
+  # Django Backend (desarrollo)
+  django-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: django-backend
+    command: sh -c "./wait-for-it.sh mysql-db:3306 -- python manage.py runserver 0.0.0.0:8000" # Modo dev
+    env_file:
+    - ./backend/.env.development
+    volumes:
+      - ./backend:/app  # Para auto-refrescar si cambias archivos Python
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql://telco:12345@mysql-db:3306/telco_db
+    depends_on:
+      - mysql-db
+    networks:
+      - xtrim-net
+
+# Volúmenes
+volumes:
+  mysql_data:
+
+# Redes
+networks:
+  xtrim-net:
+    driver: bridge
+
+
+
