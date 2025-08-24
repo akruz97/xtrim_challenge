@@ -29,9 +29,9 @@
 
 5. **Accede a la aplicación:**
 
-Frontend Angular: http://localhost:4200
-Backend Django: http://localhost:8000
-phpMyAdmin (opcional): http://localhost:8080
+- Frontend Angular: http://localhost:4200
+- Backend Django: http://localhost:8000
+- phpMyAdmin (opcional): http://localhost:8080
 
 6. **Detener los servicios:**
 
