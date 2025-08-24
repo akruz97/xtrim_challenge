@@ -17,6 +17,7 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - xtrim-net
+    restart: always
 
 
   phpmyadmin:
@@ -33,6 +34,7 @@ services:
       - mysql-db
     networks:
       - xtrim-net
+    restart: always
 
   # Django Backend (desarrollo)
   django-backend:
@@ -40,7 +42,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: django-backend
-    command: sh -c "./wait-for-it.sh mysql-db:3306 -- python manage.py runserver 0.0.0.0:8000" # Modo dev
+    command: python manage.py runserver 0.0.0.0:8000 # Modo dev
+    #command: sh -c "./wait-for-it.sh mysql-db:3306 -- python manage.py runserver 0.0.0.0:8000" # Modo dev
     env_file:
     - ./backend/.env.development
     volumes:
@@ -53,6 +56,20 @@ services:
       - mysql-db
     networks:
       - xtrim-net
+    restart: always
+
+  # angular-frontend:
+  #   build:
+  #     context: ./frontend/telco_x
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4200:80"
+  #   depends_on:
+  #     # Si tienes backend, pon aquí el nombre del servicio backend
+  #     -   django-backend
+  #   networks:
+  #     - xtrim-net
+  #   restart: always
 
 # Volúmenes
 volumes:

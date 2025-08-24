@@ -1,0 +1,13 @@
+<div style="max-width: 170px; margin: auto;">
+  <apx-chart 
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [labels]="chartOptions.labels"
+    [plotOptions]="chartOptions.plotOptions"
+    [fill]="chartOptions.fill">
+  </apx-chart>
+
+  <p style="text-align: center; margin-top: 10px;">
+    {{usedMinutes}} / {{totalMinutes}} min
+  </p>
+</div>

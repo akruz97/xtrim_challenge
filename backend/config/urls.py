@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('xtrim_api.urls')), 
+    path('', lambda request: HttpResponse("Bienvenido a la raíz de la app")),  # Página raíz simple
     # path('api/user/consumption/', UserConsumptionView.as_view(), name='user-consumption'),
 ]

@@ -1,13 +1,13 @@
-<div *ngIf="profile; else loading">
+<div *ngIf="profile; else loading" class="profile-card">
     <h4>Cliente: {{ profile.name + ' ' + profile.lastname }}</h4>
-    <div><span>Email</span></div>
-    <p>{{ profile.email }}</p>
-    <div><span>Dirección</span></div>
-    <p>{{ profile.address }}</p>
-    <div><span>Ciudad</span></div>
-    <p>{{ profile.city }}</p>
-    <div><span>Saldo</span></div>
-    <p>${{ profile.balance }}</p>
+    <div class="title-profile"><span>Correo</span></div>
+    <p class="text-profile">{{ profile.email }}</p>
+    <div class="title-profile"><span>Dirección</span></div>
+    <p class="text-profile">{{ profile.address }}</p>
+    <div class="title-profile"><span>Ciudad</span></div>
+    <p class="text-profile">{{ profile.city }}</p>
+    <div class="title-profile"><span>Saldo</span></div>
+    <p class="text-profile">${{ profile.balance }}</p>
 </div>
 
 <ng-template #loading>

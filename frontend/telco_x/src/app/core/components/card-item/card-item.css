@@ -2,3 +2,8 @@
     margin-top: 20px;
     min-height: 220px;
 }
+
+.card-item-text {
+    font-size: .75rem;
+    margin-top: 5px;
+}

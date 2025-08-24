@@ -101,6 +101,7 @@ DATABASES = {
             'NAME': 'telco_db',
             'USER': 'telco',
             'PASSWORD': '12345',
+            # 'HOST': 'mysql-db', #cambiar por mysql-db
             'HOST': '127.0.0.1', #cambiar por mysql-db
             'PORT': '3306',
         }

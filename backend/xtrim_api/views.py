@@ -8,6 +8,30 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status
 # Create your views here.
 
+class UserCheckView(APIView):
+    def post(self, request):
+        try:
+            identification = request.data.get('identification')
+            if not identification:
+                return Response(
+                    {"message": "No se proporcionó la identificación"},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            user = Client.objects.get(identification=identification)
+            serializer = ClientSerializer(user)
+            return Response(serializer.data)
+
+        except ObjectDoesNotExist:
+            return Response(
+                {"message": f"No se encontró el usuario con id {identification}"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        except Exception as e:
+            return Response(
+                {"message": f"Ocurrió un error inesperado: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 class UserConsumptionView(APIView):
     def get(self, request, user_id):

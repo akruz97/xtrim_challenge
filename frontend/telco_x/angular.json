@@ -14,6 +14,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "outputPath": "dist/telco_x",
             "polyfills": [
               "zone.js"
             ],
@@ -37,7 +38,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "800kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -47,6 +48,10 @@
                 }
               ],
               "outputHashing": "all"
+              ,
+              "allowedCommonJsDependencies": [
+                "sweetalert2"
+              ]
             },
             "development": {
               "optimization": false,

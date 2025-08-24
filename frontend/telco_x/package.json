@@ -28,8 +28,11 @@
     "@angular/forms": "^20.2.0",
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
+    "apexcharts": "^5.3.4",
     "bootstrap": "^5.3.7",
+    "ng-apexcharts": "^2.0.1",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.22.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

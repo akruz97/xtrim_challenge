@@ -1,8 +1,22 @@
 <div class="card card-item">
       <div class="card-body">
-        <h5 class="card-title">{{ title }}</h5>
-        <p class="card-text">{{ value }} {{ label }} consumidos</p>
-        <p>{{ balance }} {{ label }} disponibles</p>
-        <p>{{ additional }} {{ label }} consumo excedente</p>
+        <div class="row">
+          <div class="col-6">
+             <h5 class="card-title">{{ title }}</h5>
+              <div class="card-item-text">{{ value }} {{ label }} consumidos</div>
+              <div class="card-item-text">{{ balance }} {{ label }} disponibles</div>
+              <div class="card-item-text">{{ additional }} {{ label }} consumo excedente</div>
+          </div>
+
+          <div class="col-6">
+            <app-gauge-balance
+              [totalMinutes]="plan_limit || 0"
+              [usedMinutes]="value"
+              [label]="label">
+            </app-gauge-balance>
+        </div>
+        </div>
+       
+        
       </div>
     </div>

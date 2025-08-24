@@ -1,39 +1,35 @@
+<app-navbar></app-navbar>
 <div class="row customer-dashboard" >
-    <!-- <div class="col col-md-2 menu">
-        <component-menu></component-menu>
-    </div> -->
+  
     <div class="col col-md-3 container-profile">
-        <app-profile></app-profile>
+            <app-profile></app-profile>
     </div>
 
-    <div class="col col-md-9" *ngIf="consumption">
+    <div class="col col-md-9"  *ngIf="consumption">
         <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <app-card-item
-                [title]="'Datos'"
-                [value]="consumption?.mb?.used"
-                [label]="'MB'"
-                [balance]="consumption?.mb?.balance"
-                [additional]="consumption?.mb?.additional"
-            />
-        </div>
-        <div class="col-sm-6">
-            <app-card-item
-                [title]="'Minutos'"
-                [value]="consumption?.minutes?.used"
-                [label]="'Minutos'"
-                [balance]="consumption?.minutes?.balance"
-                [additional]="consumption?.minutes?.additional"
-            />
-        </div>
+            <h5 class="title-my-consumption" >Mis Consumos</h5>
+             <div class="col-md-6 col-sm-12 col-xs-12  mb-3 mb-sm-0">
+                    <app-card-item
+                        [title]="'Datos'"
+                        [value]="consumption.mb.used "
+                        [label]="'MB'"
+                        [balance]="consumption.mb.balance "
+                        [additional]="consumption.mb.additional "
+                        [plan_limit]="consumption.mb.limit_plan "
+                    />
+                </div>
 
-        <!-- <div class="col-sm-4">
-            <app-card-item
-                [title]="'SMS'"
-                [value]="0"
-                [label]="'SMS'"
-            />
-        </div> -->
+         <div class="col-md-6 col-sm-12">
+                    <app-card-item
+                        [title]="'Minutos'"
+                        [value]="consumption.minutes.used "
+                        [label]="'Minutos'"
+                        [balance]="consumption.minutes.balance "
+                        [additional]="consumption.minutes.additional "
+                        [plan_limit]="consumption.minutes.limit_plan "
+                    />
+        </div>
         </div>
     </div>
+   
 </div>

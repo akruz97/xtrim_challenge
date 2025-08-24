@@ -1,25 +1,36 @@
 .customer-dashboard {
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
     height: 100vh;
     display: flex;
+    /* padding: 0 15px; */
 }
 
 .container-profile {
     padding: 2%;
-    /* margin-left: 1%; */
     margin-top: 20px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: 70%;
+    min-height: 200px;
+    height: 400px;
+    
 }
 
 .menu {
     background-color: white;
     border-right: 1px solid #eee;
+  
 }
 
-.container-cards {
+.container-details {
+    padding-left: 2%;
+}
 
+.title-my-consumption {
+    margin-top: 3%;
+}
+
+.title-my-profile {
+    margin-top: 3%;
 }
 

@@ -27,11 +27,11 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copia los archivos de requisitos
-COPY requirements /app/requirements
+COPY requirements.txt /app/requirements.txt
 
 # Actualiza pip e instala las dependencias de Python
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements/dev.txt
+    pip install --no-cache-dir -r requirements.txt
 
 # Verifica que g++ esté instalado
 RUN g++ --version || echo "g++ no está instalado"

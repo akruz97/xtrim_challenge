@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Ingresa tu código de cliente</h2>
+            <form (ngSubmit)="buscarUsuario()">
+                <div class="mb-3">
+                    <label for="clientCode" class="form-label">Código de Cliente</label>
+                    <input type="text" id="clientCode" class="form-control" [(ngModel)]="clientCode" name="clientCode" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
