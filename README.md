@@ -31,7 +31,7 @@
 
 - Frontend Angular: http://localhost:4200
 - Backend Django: http://localhost:8000
-- phpMyAdmin (opcional): http://localhost:8080
+- phpMyAdmin (opcional): http://localhost:8082
 
 6. **Detener los servicios:**
 
