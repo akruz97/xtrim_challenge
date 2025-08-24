@@ -5,6 +5,7 @@ class Plan(models.Model):
     name = models.CharField(max_length=100)
     base_price = models.DecimalField(max_digits=10, decimal_places=4)
     mb_included = models.IntegerField(help_text="Data limit in MB")
+    minutes_included = models.IntegerField(help_text="Minutes limit", default=0)
     mb_price = models.DecimalField(max_digits=10, decimal_places=4, help_text="Price per MB over limit")
     minute_price = models.DecimalField(max_digits=10, decimal_places=4, help_text="Price per minute")
     duration = models.IntegerField(help_text="Duration in days")
@@ -25,6 +26,7 @@ class Client(models.Model):
     city = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
