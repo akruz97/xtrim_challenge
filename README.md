@@ -42,7 +42,6 @@ Módulo de visualización de consumo de datos, saldos y minutos de clientes de e
     docker exec -it django-backend python manage.py load_clients
     docker exec -it django-backend python manage.py load_plan_clients
     docker exec -it django-backend python manage.py load_consumptions
-# Agrega aquí otros comandos personalizados que tengas
 
 5. **Accede a la aplicación:**
 
