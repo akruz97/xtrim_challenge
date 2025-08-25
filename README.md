@@ -62,7 +62,7 @@ Módulo de visualización de consumo de datos, saldos y minutos de clientes de e
 - POST - Verificar la existencia de un usuario por codigo de cliente http:localhost:8000/user/check
 - GET - Obtener el detalle de factura de un usuario http:localhost:8000/user/invoice/<int:user_id>
 
-7. **Servicios incluidos:**
+8. **Servicios incluidos:**
 
 - angular-frontend: Sirve la app Angular con Nginx.
 - django-backend: API y lógica de negocio con Django.
