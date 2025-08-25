@@ -47,10 +47,15 @@
 - Backend Django: http://localhost:8000
 - phpMyAdmin (opcional): http://localhost:8082
 
-6. **Detener los servicios:**
+5. **Usuarios de prueba:**
+
+- Usuario1 / Codigo de cliente: 12345678
+- Usuario2 / Código de cliente: 87654321
+
+7. **Detener los servicios:**
 
 Servicios incluidos
-angular-frontend: Sirve la app Angular con Nginx.
-django-backend: API y lógica de negocio con Django.
-mysql-db: Base de datos MySQL.
-phpmyadmin: Interfaz web para administrar MySQL.
+- angular-frontend: Sirve la app Angular con Nginx.
+- django-backend: API y lógica de negocio con Django.
+- mysql-db: Base de datos MySQL.
+- phpmyadmin: Interfaz web para administrar MySQL.
