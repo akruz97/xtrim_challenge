@@ -9,12 +9,16 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_PATH = BASE_DIR / '.env'
 
+# Cargar variables de entorno desde .env
+load_dotenv(ENV_PATH)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -98,12 +102,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
      'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'telco_db',
-            'USER': 'telco',
-            'PASSWORD': '12345',
-            # 'HOST': 'mysql-db', #cambiar por mysql-db
-            'HOST': '127.0.0.1', #cambiar por mysql-db
-            'PORT': '3306',
+            'NAME': os.getenv('MYSQL_DB', 'telco_db'),
+            'USER': os.getenv('MYSQL_USER', 'telco'),
+            'PASSWORD': os.getenv('MYSQL_PASSWORD', '12345'),
+            'HOST': os.getenv('MYSQL_HOST', '127.0.0.1'),
+            'PORT': os.getenv('MYSQL_PORT', '3306'),
         }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
