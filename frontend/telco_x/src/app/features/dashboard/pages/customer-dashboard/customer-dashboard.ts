@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
-// import { Menu } from './../menu/menu';
-import { Profile } from './../../../features/users/components/profile/profile';
-import { CardItem } from '../card-item/card-item';
-import { Navbar } from './../navbar/navbar';
-import { IConsumption, IPlan, UserProfile } from '../../../shared/interfaces';
-import { ProfileService } from '../../services/profile/profile.service';
-import { ConsumptionService } from '../../services/consumption/consumption.service';
+import { Profile } from '../../../users/components/profile/profile';
+import { CardItem } from '../../components/card-item/card-item';
+import { Navbar } from '../../../../core/components/navbar/navbar';
+import { IConsumption, IPlan, UserProfile } from '../../../../shared/interfaces';
+import { ProfileService } from '../../../../core/services/profile/profile.service';
+import { ConsumptionService } from '../../../../core/services/consumption/consumption.service';
 import { CommonModule } from '@angular/common';
-import { PlanService } from '../../services/plan/plan.service';
+import { PlanService } from '../../../../core/services/plan/plan.service';
 import { Router } from '@angular/router';
-import { UserShared } from '../../../shared/services/user.shared';
-import { AuthService } from '../../services/auth/auth.service';
+import { UserShared } from '../../../../shared/services/user.shared';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'customer-dashboard',
@@ -20,8 +19,10 @@ import { AuthService } from '../../services/auth/auth.service';
   standalone: true,
 })
 export class CustomerDashboard {
-  consumption: IConsumption | undefined;
+  consumption: IConsumption | null = null;
   plan: IPlan | undefined;
+  errorConsumption = '';
+  errorPlan = '';
   // userId;
 
   constructor(
@@ -32,7 +33,6 @@ export class CustomerDashboard {
   ) {}
 
   ngOnInit(): void {
-    // llamamos al servicio
     this.getPlan();
     this.getConsumption();
   }
@@ -50,18 +50,26 @@ export class CustomerDashboard {
         console.log('Consumo recibido:', data);
       },
       error: (err) => {
+        this.errorConsumption = 'Error al cargar consumo';
         console.error('Error al cargar consumo:', err);
       },
     });
   }
 
   getPlan(): void {
-    this.planService.getPlan(2).subscribe({
+    const userId = this.auth.getUserId();
+
+    console.log('ID recibido en dashboard:', userId);
+    if (!userId) {
+      return;
+    }
+    this.planService.getPlan(userId).subscribe({
       next: (data) => {
         this.plan = data;
         console.log('Plan recibido:', data);
       },
       error: (err) => {
+        this.errorPlan = 'Error al cargar plan';
         console.error('Error al cargar plan:', err);
       },
     });

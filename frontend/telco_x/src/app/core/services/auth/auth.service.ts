@@ -1,3 +1,9 @@
+/**
+ * AuthService
+ *
+ * Servicio para gestionar operaciones de autenticación.
+ * Incluye métodos para iniciar sesión, cerrar sesión y verificar el estado de autenticación.
+ */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,7 +15,6 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api/user/check';
   private readonly TOKEN_KEY = 'auth_token';
-  // private cosumption: IConsumption | undefined = undefined;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -23,7 +28,6 @@ export class AuthService {
   }
 
   logout() {
-    console.log('User logged out');
     localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigate(['/login']);
   }

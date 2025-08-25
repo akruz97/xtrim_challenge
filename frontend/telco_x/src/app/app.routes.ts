@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Login } from './features/auth/pages/login/login';
-import { CustomerDashboard } from './core/components/customer-dashboard/customer-dashboard';
+import { CustomerDashboard } from './features/dashboard/pages/customer-dashboard/customer-dashboard';
 import { AuthGuard } from './shared/guards/auth-guard';
 
 export const routes: Routes = [

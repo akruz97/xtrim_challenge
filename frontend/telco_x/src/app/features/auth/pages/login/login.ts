@@ -11,6 +11,11 @@ import Swal from 'sweetalert2';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
+/**
+ * Login
+ * Muestra la página de ingreso al dashboard
+ */
 export class Login {
   clientCode: string = '';
   user: any;
@@ -25,7 +30,10 @@ export class Login {
     this.authService.login(userId);
   }
 
-  buscarUsuario(): void {
+  /*
+   * Consulta el código de cliente ingresado.
+   */
+  checkUser(): void {
     if (!this.clientCode.trim()) {
       Swal.fire({
         icon: 'warning',
@@ -35,14 +43,12 @@ export class Login {
 
       return;
     }
-    // llamamos al servicio
     this.authService.checkUser(this.clientCode).subscribe({
       next: (data) => {
         this.user = data;
         console.log('Usuario recibido:', data);
         this.userShared.setUserId(data.id);
         this.doLogin(data.id);
-        // this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         Swal.fire({

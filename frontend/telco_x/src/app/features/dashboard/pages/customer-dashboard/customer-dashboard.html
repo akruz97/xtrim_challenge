@@ -2,7 +2,7 @@
 <div class="row customer-dashboard" >
   
     <div class="col col-md-3 container-profile">
-            <app-profile></app-profile>
+        <app-profile></app-profile>
     </div>
 
     <div class="col col-md-9"  *ngIf="consumption">
@@ -16,6 +16,7 @@
                         [balance]="consumption.mb.balance "
                         [additional]="consumption.mb.additional "
                         [plan_limit]="consumption.mb.limit_plan "
+                        [error]="errorConsumption"
                     />
                 </div>
 
@@ -27,6 +28,7 @@
                         [balance]="consumption.minutes.balance "
                         [additional]="consumption.minutes.additional "
                         [plan_limit]="consumption.minutes.limit_plan "
+                        [error]="errorConsumption"
                     />
         </div>
         </div>

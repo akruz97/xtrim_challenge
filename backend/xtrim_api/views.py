@@ -9,6 +9,10 @@ from rest_framework import status
 # Create your views here.
 
 class UserCheckView(APIView):
+    """
+    API endpoint para consultar el la existencia de un usuario.
+    Devuelve los datos del usuario con su plan asociado.
+    """
     def post(self, request):
         try:
             identification = request.data.get('identification')
@@ -34,6 +38,11 @@ class UserCheckView(APIView):
             )
 
 class UserConsumptionView(APIView):
+    """
+    API endpoint para consultar el consumo de un usuario.
+    Devuelve datos de MB y minutos usados, límites del plan y 
+    datos adicionales consumidos.
+    """
     def get(self, request, user_id):
         try:
             consumption = Consumption.objects.get(client__id=user_id)  
@@ -70,14 +79,44 @@ class UserConsumptionView(APIView):
             )
 
 class UserView(APIView):
+    """
+    API endpoint para consultar datos de perfil de un usuario.
+    Devuelve la información personal de un usuario.
+    """
     def get(self, request, user_id):
-        user = Client.objects.get(id=user_id)
-        serializer = ClientSerializer(user)
-        return Response(serializer.data)
+        try:
+            user = Client.objects.get(id=user_id)
+            serializer = ClientSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response(
+                {"error": f"No se encontró el usuario con id {user_id}"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": f"Ocurrió un error inesperado: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 class UserPlanView(APIView):
+    """
+    API endpoint para consultar el plan de un usuario.
+    Devuelve los detalles del plan.
+    """
     def get(self, request, user_id):
-        user = Client.objects.get(id=user_id)
-        serializer = ClientSerializer(user)
-        plan = serializer.data.get('plan')
-        return Response(plan)
+        try:
+            user = Client.objects.get(id=user_id)
+            serializer = ClientSerializer(user)
+            plan = serializer.data.get('plan')
+            return Response(plan, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response(
+                {"error": f"No se encontró el usuario con id {user_id}"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": f"Ocurrió un error inesperado: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

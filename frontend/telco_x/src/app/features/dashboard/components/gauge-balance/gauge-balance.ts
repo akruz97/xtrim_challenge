@@ -22,6 +22,11 @@ export type ChartOptions = {
   templateUrl: './gauge-balance.html',
   styleUrl: './gauge-balance.css',
 })
+
+/**
+ * GaugeBalance
+ * Muestra el gráfico de balance de minutos/datos.
+ */
 export class GaugeBalance implements OnChanges {
   @Input() totalMinutes: number = 0; // valor dinámico desde el padre
   @Input() usedMinutes: number = 0; // valor dinámico desde el padre
@@ -54,7 +59,7 @@ export class GaugeBalance implements OnChanges {
 
     if (this.totalMinutes > 0) {
       percentage = (this.usedMinutes / this.totalMinutes) * 100;
-      percentage = Math.min(percentage, 100); // <-- nunca más de 100
+      percentage = Math.min(percentage, 100);
     }
     this.chartOptions = {
       series: [percentage],

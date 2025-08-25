@@ -1,3 +1,9 @@
+/**
+ * ProfileService
+ *
+ * Servicio para gestionar operaciones relacionadas con perfiles de usuario.
+ * Incluye métodos para obtener los datos de un perfil.
+ */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserProfile } from '../../../shared/interfaces';
@@ -12,6 +18,11 @@ export class ProfileService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Obtiene los datos de perfil de un cliente por su ID.
+   * @param id Identificador del cliente
+   * @returns Observable con los datos del perfil del cliente
+   */
   getProfile(id: number): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.apiUrl}/${id}`);
   }
