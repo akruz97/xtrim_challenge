@@ -9,7 +9,7 @@
 
 1. **Clona el repositorio:**
    ```sh
-   git clone <URL-del-repositorio>
+   git clone https://github.com/akruz97/xtrim_challenge
    cd xtrim_challenge
 
 2. **Configura los archivos de entorno:**
