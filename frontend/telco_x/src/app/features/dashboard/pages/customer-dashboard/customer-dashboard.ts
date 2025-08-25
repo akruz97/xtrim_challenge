@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Profile } from '../../../users/components/profile/profile';
 import { CardItem } from '../../components/card-item/card-item';
 import { Navbar } from '../../../../core/components/navbar/navbar';
-import { IConsumption, IPlan, UserProfile } from '../../../../shared/interfaces';
+import { IConsumption, IInvoice, IPlan, UserProfile } from '../../../../shared/interfaces';
 import { ProfileService } from '../../../../core/services/profile/profile.service';
 import { ConsumptionService } from '../../../../core/services/consumption/consumption.service';
 import { CommonModule } from '@angular/common';
@@ -10,10 +10,12 @@ import { PlanService } from '../../../../core/services/plan/plan.service';
 import { Router } from '@angular/router';
 import { UserShared } from '../../../../shared/services/user.shared';
 import { AuthService } from '../../../../core/services/auth/auth.service';
+import { Invoice } from '../../components/invoice/invoice';
+import { InvoiceService } from '../../../../core/services/invoice/invoice';
 
 @Component({
   selector: 'customer-dashboard',
-  imports: [CommonModule, Profile, CardItem, Navbar],
+  imports: [CommonModule, CardItem, Navbar, Invoice],
   templateUrl: './customer-dashboard.html',
   styleUrl: './customer-dashboard.css',
   standalone: true,
@@ -21,6 +23,7 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
 export class CustomerDashboard {
   consumption: IConsumption | null = null;
   plan: IPlan | undefined;
+  invoice: IInvoice | undefined;
   errorConsumption = '';
   errorPlan = '';
   // userId;
@@ -29,12 +32,14 @@ export class CustomerDashboard {
     private consumptionService: ConsumptionService,
     private planService: PlanService,
     private userShared: UserShared,
-    private auth: AuthService
+    private auth: AuthService,
+    private invoiceService: InvoiceService
   ) {}
 
   ngOnInit(): void {
     this.getPlan();
     this.getConsumption();
+    this.getInvoice();
   }
 
   getConsumption(): void {
@@ -71,6 +76,24 @@ export class CustomerDashboard {
       error: (err) => {
         this.errorPlan = 'Error al cargar plan';
         console.error('Error al cargar plan:', err);
+      },
+    });
+  }
+
+  getInvoice(): void {
+    const userId = this.auth.getUserId();
+
+    console.log('ID recibido en dashboard:', userId);
+    if (!userId) {
+      return;
+    }
+    this.invoiceService.getInvoice(userId).subscribe({
+      next: (data) => {
+        this.invoice = data;
+        console.log('Factura recibida:', data);
+      },
+      error: (err) => {
+        console.error('Error al cargar factura:', err);
       },
     });
   }

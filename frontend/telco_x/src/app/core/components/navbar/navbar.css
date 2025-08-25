@@ -1,0 +1,22 @@
+#navbar-dashboard {
+  background-color: #3F1A69 !important;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#navbar-dashboard .navbar-brand {
+  font-weight: bold;
+  color: #fff !important;
+}
+
+#navbar-dashboard .nav-link {
+  color: #fff !important;
+  margin: 0 15px;
+}
+
+#navbar-dashboard .nav-link:hover {
+  color: #FCCA00 !important;
+}
+
+#navbar-dashboard .dropdown-menu {
+  min-width: 200px;
+}

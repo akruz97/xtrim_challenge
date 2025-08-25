@@ -38,3 +38,22 @@ export interface IPlan {
   duration: number;
   created_at: string;
 }
+
+export interface IInvoice {
+  user_id: number;
+  detail: {
+    base_price: number;
+    mb_extras: number;
+    minutes_extras: number;
+    mb_price_extras: number;
+    minutes_price_extras: number;
+    mb_plan: number;
+    minutes_plan: number;
+  };
+  invoice: {
+    total: number;
+    taxes: number;
+    val_taxes: number;
+    subtotal: number;
+  };
+}

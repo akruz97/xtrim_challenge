@@ -1,0 +1,17 @@
+<div >
+    <h5 class="title-my-consumption" >Facturación</h5>
+
+    <div class="card card-item mt-4">
+            <div class="card-body" *ngIf="invoiceData">
+                <div class="row">
+                    <div>Tarifa base : $ {{ invoiceData.detail.base_price }}</div>
+                    <div>Datos: {{ invoiceData.detail.mb_plan}}MB Plan + {{ invoiceData.detail.mb_extras }}MB ( $ {{ invoiceData.detail.mb_price_extras }} ) </div>
+                    <div>Llamadas: {{ invoiceData.detail.minutes_plan}}min Plan + {{ invoiceData.detail.minutes_extras }} min ( $ {{ invoiceData.detail.minutes_price_extras }} ) </div>
+                    <div class="mt-4">Subtotal: $ {{ invoiceData.invoice.subtotal}}</div>
+                    <div>Impuestos: $ {{ invoiceData.invoice.taxes }}</div>
+                    <div class="mt-3"><strong>Total a pagar: $ {{ invoiceData.invoice.total}}</strong></div>
+                </div>
+            
+            </div>
+            </div>
+</div>

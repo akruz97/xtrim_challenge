@@ -120,3 +120,75 @@ class UserPlanView(APIView):
                 {"error": f"Ocurrió un error inesperado: {str(e)}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        
+
+class UserInvoiceView(APIView):
+    """
+    API endpoint para consultar la factura de un usuario.
+    Devuelve datos consumidos y detalles de la factura.
+    """
+    def get(self, request, user_id):
+        try:
+            consumption = Consumption.objects.get(client__id=user_id)  
+            # serializer = ConsumptionSerializer(consumption)
+
+            from decimal import Decimal
+            mb_included = Decimal(str(consumption.client.plan.mb_included))
+            mb_used = Decimal(str(consumption.mb_used))
+            mb_price = Decimal(str(consumption.client.plan.mb_price))
+            minutes_included = Decimal(str(consumption.client.plan.minutes_included))
+            minutes_used = Decimal(str(consumption.minutes_used))
+            minute_price = Decimal(str(consumption.client.plan.minute_price))
+            base_price = Decimal(str(consumption.client.plan.base_price))
+            val_taxes = Decimal('0.15')
+
+            mb_extras = mb_used - mb_included if mb_used > mb_included else Decimal('0')
+            minutes_extras = minutes_used - minutes_included if minutes_used > minutes_included else Decimal('0')
+
+            mb_price_extras = mb_extras * mb_price
+            minutes_price_extras = minutes_extras * minute_price
+
+            subtotal = mb_price_extras + minutes_price_extras + base_price
+            taxes = subtotal * val_taxes
+            total = subtotal + taxes
+
+            # Formatear los valores como float para el frontend
+            mb_extras = float(mb_extras)
+            minutes_extras = float(minutes_extras)
+            mb_price_extras = float(mb_price_extras)
+            minutes_price_extras = float(minutes_price_extras)
+            subtotal = float(subtotal)
+            taxes = float(taxes)
+            total = float(total)
+
+            data = {
+                "user_id": user_id,
+                "detail": {
+                    "base_price": consumption.client.plan.base_price,
+                    "mb_extras": mb_extras,
+                    "minutes_extras": minutes_extras,
+                    "mb_price_extras": mb_price_extras,
+                    "minutes_price_extras": minutes_price_extras,
+                    "mb_plan": consumption.client.plan.mb_included,
+                    "minutes_plan": consumption.client.plan.minutes_included,
+                },
+                "invoice": {
+                    "total": total,
+                    "taxes": taxes,
+                    "val_taxes": val_taxes,
+                    "subtotal": subtotal
+                }
+            }
+            return Response(data, status=status.HTTP_200_OK)
+
+        except ObjectDoesNotExist:
+            return Response(
+                {"error": f"No se encontró factura para el usuario con id {user_id}"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        except Exception as e:
+            return Response(
+                {"error": f"Ocurrió un error inesperado: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
