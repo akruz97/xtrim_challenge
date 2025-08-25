@@ -56,11 +56,11 @@ Módulo de visualización de consumo de datos, saldos y minutos de clientes de e
 - Usuario2 / Código de cliente: 87654321
 
 7. **Endpoints**
-- GET - Obtener el consumo de un cliente: http:localhost:8000/consumption/<int:user_id>
-- GET - Obtener los datos de un usuario: http:localhost:8000/user/<int:user_id>
-- GET - Obtener el detalle del plan de un usuario: http:localhost:8000/user/plan/<int:user_id>
-- POST - Verificar la existencia de un usuario por codigo de cliente http:localhost:8000/user/check
-- GET - Obtener el detalle de factura de un usuario http:localhost:8000/user/invoice/<int:user_id>
+- GET - Obtener el consumo de un cliente: http://localhost:8000/api/consumption/<int:user_id>
+- GET - Obtener los datos de un usuario: http://localhost:8000/api/user/<int:user_id>
+- GET - Obtener el detalle del plan de un usuario: http://localhost:8000/api/user/plan/<int:user_id>
+- POST - Verificar la existencia de un usuario por codigo de cliente http://localhost:8000/api/user/check
+- GET - Obtener el detalle de factura de un usuario http://localhost:8000/api/user/invoice/<int:user_id>
 
 8. **Servicios incluidos:**
 
