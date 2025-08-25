@@ -6,7 +6,6 @@ from .serializers.consumption_serializer import ConsumptionSerializer
 from .serializers.client_serializer import ClientSerializer
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status
-# Create your views here.
 
 class UserCheckView(APIView):
     """
@@ -125,12 +124,11 @@ class UserPlanView(APIView):
 class UserInvoiceView(APIView):
     """
     API endpoint para consultar la factura de un usuario.
-    Devuelve datos consumidos y detalles de la factura.
+    Devuelve el detalle de la factura y datos consumidos facturados.
     """
     def get(self, request, user_id):
         try:
             consumption = Consumption.objects.get(client__id=user_id)  
-            # serializer = ConsumptionSerializer(consumption)
 
             from decimal import Decimal
             mb_included = Decimal(str(consumption.client.plan.mb_included))
