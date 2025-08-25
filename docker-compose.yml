@@ -58,18 +58,18 @@ services:
       - xtrim-net
     restart: always
 
-  # angular-frontend:
-  #   build:
-  #     context: ./frontend/telco_x
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "4200:80"
-  #   depends_on:
-  #     # Si tienes backend, pon aquí el nombre del servicio backend
-  #     -   django-backend
-  #   networks:
-  #     - xtrim-net
-  #   restart: always
+  angular-frontend:
+    build:
+      context: ./frontend/telco_x
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      # Si tienes backend, pon aquí el nombre del servicio backend
+      -   django-backend
+    networks:
+      - xtrim-net
+    restart: always
 
 # Volúmenes
 volumes:
