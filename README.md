@@ -14,7 +14,7 @@
 
 2. **Configura los archivos de entorno:**
 
-- Verifica que el archivo backend/.env.development exista y tenga las variables necesarias.
+- Verifica que el archivo backend/.env exista y tenga las variables necesarias.
     ```sh
     DEBUG=True
     DJANGO_SETTINGS_MODULE=config.settings
@@ -23,7 +23,7 @@
     MYSQL_DB=telco_db
     MYSQL_USER=telco
     MYSQL_PASSWORD=12345
-    MYSQL_HOST=mysql-db
+    MYSQL_HOST=127.0.0.1
     MYSQL_PORT=3306
     MYSQL_ROOT_PASSWORD=telco
 
