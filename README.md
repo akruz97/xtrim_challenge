@@ -35,7 +35,9 @@
 4. **Aplica migraciones y carga datos en la base de datos:**
     ```sh
     docker exec -it django-backend python manage.py migrate
+    docker exec -it django-backend python manage.py load_plans
     docker exec -it django-backend python manage.py load_clients
+    docker exec -it django-backend python manage.py load_plan_clients
     docker exec -it django-backend python manage.py load_consumptions
 # Agrega aquí otros comandos personalizados que tengas
 
