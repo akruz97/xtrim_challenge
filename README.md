@@ -23,7 +23,7 @@
     MYSQL_DB=telco_db
     MYSQL_USER=telco
     MYSQL_PASSWORD=12345
-    MYSQL_HOST=mysql-db
+    MYSQL_HOST=172.0.0.1
     MYSQL_PORT=3306
     MYSQL_ROOT_PASSWORD=telco
 
