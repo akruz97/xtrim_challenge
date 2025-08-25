@@ -1,4 +1,7 @@
+# Prueba Técnica
 # Xtrim Challenge
+
+Módulo de visualización de consumo de datos, saldos y minutos de clientes de empresa de telecomunicaciones.
 
 ## Requisitos
 
@@ -47,14 +50,13 @@
 - Backend Django: http://localhost:8000
 - phpMyAdmin (opcional): http://localhost:8082
 
-5. **Usuarios de prueba:**
+6. **Usuarios de prueba:**
 
 - Usuario1 / Codigo de cliente: 12345678
 - Usuario2 / Código de cliente: 87654321
 
-7. **Detener los servicios:**
+7. **Servicios incluidos:**
 
-Servicios incluidos
 - angular-frontend: Sirve la app Angular con Nginx.
 - django-backend: API y lógica de negocio con Django.
 - mysql-db: Base de datos MySQL.
