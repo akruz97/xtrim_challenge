@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
+    'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': os.getenv('MYSQL_DB', 'telco_db'),
             'USER': os.getenv('MYSQL_USER', 'telco'),
